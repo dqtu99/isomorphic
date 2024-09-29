@@ -25,3 +25,13 @@ body {
     text-wrap: balance;
   }
 }
+
+.custom-checkbox .ant-checkbox {
+  width: 24px;
+  height: 24px;
+}
+
+.custom-checkbox .ant-checkbox-inner {
+  width: 25px;
+  height: 25px;
+}

@@ -1,0 +1,16 @@
+.back-home {
+  color: white;
+  background-color: #007aff;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
+@media (min-width: 1024px) {
+  .back-home {
+    color: gray;
+    background-color: white;
+    position: relative;
+    top: -30px;
+  }
+}

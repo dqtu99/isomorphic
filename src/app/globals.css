@@ -35,3 +35,31 @@ body {
   width: 25px;
   height: 25px;
 }
+
+.img-round {
+  img {
+    border-radius: 50%;
+  }
+}
+
+@layer utilities {
+  @keyframes spin-custom {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-custom {
+    animation: spin-custom 4s infinite linear;
+  }
+}
+
+.message-icon {
+  img {
+    position: relative;
+    top: 5px;
+  }
+}

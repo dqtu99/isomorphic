@@ -11,7 +11,7 @@ function UserLocation() {
     { country: "FR", name: "France", value: 5, style: "bg-[#cce8ed]" },
   ];
   return (
-    <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
+    <div className="lg:w-1/2 flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
       <div className="w-full flex justify-between items-center">
         <p className="text-lg font-bold">User Location</p>
         <DatePicker picker="month" />

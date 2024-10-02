@@ -12,7 +12,11 @@ export default function WorldMap({ data }: WorldMapProps) {
   const { width } = useWindowSize();
   const [sizeWorldMap, setSizeWorldMap] = useState(600);
   useEffect(() => {
-    setSizeWorldMap(width - 110);
+    if (width >= 1024) {
+      setSizeWorldMap(width / 2 - 110);
+    } else {
+      setSizeWorldMap(width - 110);
+    }
   }, [width]);
 
   return (

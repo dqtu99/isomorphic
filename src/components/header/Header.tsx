@@ -17,16 +17,18 @@ export default function Header() {
         <div className="hover:cursor-pointer">
           <Image src={iconLogo} alt="fail" width="35" />
         </div>
-        <div className="hover:cursor-pointer">
+        <div className="hover:cursor-pointer ">
           <Image src={iconSearch} alt="fail" width="20" />
         </div>
       </div>
       <div className="flex justify-center items-center gap-4">
-        <div className="hover:cursor-pointer ">
+        <div className="hover:cursor-pointer relative">
           <Image src={noticeIcon} alt="fail" width="20" />
+          <div className="w-2 h-2 rounded-full bg-[#f5a622] absolute right-0 bottom-3" />
         </div>
-        <div className="message-icon hover:cursor-pointer ">
+        <div className="message-icon hover:cursor-pointer relative">
           <Image src={messageIcon} alt="fail" width="24" />
+          <div className="w-2 h-2 rounded-full bg-[#12a749] absolute right-0 bottom-3" />
         </div>
         <div className="hover:cursor-pointer bg-gray-100 w-8 h-8 flex justify-center items-center ">
           <Image

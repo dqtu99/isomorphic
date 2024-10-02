@@ -6,14 +6,14 @@ import giftIcon from "@/assets/img/gift.svg";
 import iconSale from "@/assets/img/icon-sale.svg";
 import revenueIcon from "@/assets/img/icon-revenue.svg";
 import AreaChart from "@/components/common/area-chart/AreaChart";
-import BarChart from "@/components/common/bar-chart/BarChart";
 import RadialBarChart from "@/components/common/radial-bar-chart/RadialBarChart";
-import Search from "antd/es/input/Search";
-import Table from "@/components/common/table/Table";
 import HeroSection from "@/components/ecommerce/hero-section/HeroSection";
 import TimeOption from "@/components/common/time-option/TimeOption";
-import CustomerRate from "@/components/ecommerce/repeat-customer-rate/CustomerRate";
 import UserLocation from "@/components/ecommerce/user-location/UserLocation";
+import StockReport from "@/components/ecommerce/stock-report/StockReport";
+import CustomerRate from "@/components/ecommerce/repeat-customer-rate/CustomerRate";
+import SaleReport from "@/components/ecommerce/sale-report/SaleReport";
+import TopProduct from "@/components/ecommerce/top-product/TopProduct";
 
 export default function Ecommerce() {
   return (
@@ -88,37 +88,14 @@ export default function Ecommerce() {
             </div>
           </div>
         </div>
-
-        {/* /// */}
-        <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
-          <div className="w-full flex justify-between items-center">
-            <div>
-              <p className="text-lg font-bold">Sales Report</p>
-              <div className="flex items-center gap-2 text-sm text-gray-300">
-                <div className="w-2 h-2 rounded-full bg-indigo-500" />
-                <p>Revenue</p>
-                <div className="w-2 h-2 rounded-full bg-indigo-200" />
-                <p>Expense</p>
-              </div>
-            </div>
-            <DatePicker picker="year" />
-          </div>
-          <div className="w-full h-96 flex flex-col gap-6">
-            <BarChart barSize={40} color="#3335cd" />
-          </div>
+        <SaleReport />
+        <StockReport />
+        <CustomerRate />
+        <div className="flex flex-col gap-6 lg:flex-row">
+          <TopProduct />
+          <UserLocation />
         </div>
-        <UserLocation />
-        <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
-          <div className="w-full flex justify-between items-center">
-            <div>
-              <p className="text-lg font-bold">Stock Report</p>
-            </div>
-            <Search placeholder="input search text" style={{ width: 200 }} />
-          </div>
-          <div className="w-full h-96 flex flex-col gap-6">
-            <Table />
-          </div>
-        </div>
+        <StockReport />
       </div>
     </div>
   );

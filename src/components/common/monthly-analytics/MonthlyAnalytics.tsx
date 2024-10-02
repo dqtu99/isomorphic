@@ -59,7 +59,7 @@ export default function MonthlyAnalytics({
           </span>
         ) : (
           <span className="text-sm flex gap-1 text-rose-600">
-            <Image src={decreaseIcon} alt="fail" /> - {percent} %{" "}
+            <Image src={decreaseIcon} alt="fail" /> - {percent} %
             <span className="text-gray-400">
               <span className="md:hidden lg:inline">Increased</span> last month
             </span>

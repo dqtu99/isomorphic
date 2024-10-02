@@ -1,38 +1,27 @@
 "use client";
 import Header from "@/components/header/Header";
-import { PlusOutlined } from "@ant-design/icons";
 import { Button, DatePicker } from "antd";
-import Image from "next/image";
-import handIcon from "@/assets/img/hand-icon.svg";
 import MonthlyAnalytics from "@/components/common/monthly-analytics/MonthlyAnalytics";
 import giftIcon from "@/assets/img/gift.svg";
 import iconSale from "@/assets/img/icon-sale.svg";
 import revenueIcon from "@/assets/img/icon-revenue.svg";
-import AreaChartComponent from "@/components/common/tiny-area-chart/TinyAreaChart";
-import TinyBarChart from "@/components/common/tiny-bar-chart/TinyBarChart";
+import AreaChart from "@/components/common/area-chart/AreaChart";
+import BarChart from "@/components/common/bar-chart/BarChart";
+import RadialBarChart from "@/components/common/radial-bar-chart/RadialBarChart";
+import Search from "antd/es/input/Search";
+import Table from "@/components/common/table/Table";
+import HeroSection from "@/components/ecommerce/hero-section/HeroSection";
+import TimeOption from "@/components/common/time-option/TimeOption";
+import CustomerRate from "@/components/ecommerce/repeat-customer-rate/CustomerRate";
+import UserLocation from "@/components/ecommerce/user-location/UserLocation";
 
 export default function Ecommerce() {
   return (
     <div className="flex flex-col">
       <Header />
       <div className="ecommerce-container px-4 py-2 flex flex-col gap-6   ">
-        <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
-          <p className="text-2xl font-bold">
-            Good Morning , <br />
-            Cameron
-            <sp className="inline-block ml-2 ">
-              <Image width={32} src={handIcon} alt="fail" />
-            </sp>
-          </p>
-          <p>
-            Here’s What happening on your store today. See the statistics at
-            once.
-          </p>
-          <Button type="primary" size="large" icon={<PlusOutlined />}>
-            Add Product
-          </Button>
-        </div>
-        <div className="flex flex-col gap-6">
+        <HeroSection />
+        <div className="flex flex-col gap-6 md:flex-row justify-between">
           <MonthlyAnalytics
             title="News Orders"
             total="1,390"
@@ -58,32 +47,49 @@ export default function Ecommerce() {
             icon={revenueIcon}
           />
         </div>
-        <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
-          <div className="w-full flex justify-between items-center">
-            <div>
-              <p className="text-sm text-gray-400">Total profit</p>
-              <p className="font-bold">$ 8,950.00</p>
-            </div>
-            <Button>Detail</Button>
-          </div>
-          <div className="w-full flex flex-col gap-6">
-            <div className="w-full h-12 px-4 flex justify-between  items-center border border-solid rounded-md border-slate-200">
-              <div className="w-12 px-2 py-1 hover:cursor-pointer flex justify-center  bg-gray-100 rounded-md">
-                5 D
+        <div className="flex flex-col gap-6 lg:flex-row  ">
+          <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md lg:w-full">
+            <div className="w-full flex justify-between items-center">
+              <div>
+                <p className="text-sm text-gray-400">Total profit</p>
+                <p className="font-bold">$ 8,950.00</p>
               </div>
-              <div> 2 W </div>
-              <div> 1 M </div>
-              <div> 6 M </div>
-              <div> 1 Y </div>
+              <Button>Detail</Button>
             </div>
-            <div>
-              <AreaChartComponent />
+            <div className="w-full flex flex-col gap-6">
+              <TimeOption />
+              <AreaChart />
+              <p className="text-sm text-gray-400">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 256 256"
+                  class="inline-flex h-auto w-4 text-gray-500/80 dark:text-gray-600"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm-4,48a12,12,0,1,1-12,12A12,12,0,0,1,124,72Zm12,112a16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40a8,8,0,0,1,0,16Z"></path>
+                </svg>
+                Total profit without tax included.
+              </p>
             </div>
-            <p className="text-sm text-gray-400">
-              Total profit without tax included.
-            </p>
+          </div>
+          <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md lg:w-full">
+            <div className="w-full flex justify-between items-center">
+              <div>
+                <p className="text-lg font-bold">Promotional Sales</p>
+              </div>
+              <DatePicker picker="month" />
+            </div>
+            <div className="w-full h-96 flex flex-col gap-6">
+              <RadialBarChart />
+            </div>
           </div>
         </div>
+
+        {/* /// */}
         <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
           <div className="w-full flex justify-between items-center">
             <div>
@@ -98,18 +104,19 @@ export default function Ecommerce() {
             <DatePicker picker="year" />
           </div>
           <div className="w-full h-96 flex flex-col gap-6">
-            <TinyBarChart barSize={40} color="#3335cd" />
+            <BarChart barSize={40} color="#3335cd" />
           </div>
         </div>
+        <UserLocation />
         <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
           <div className="w-full flex justify-between items-center">
             <div>
-              <p className="text-lg font-bold">Promotional Sales</p>
+              <p className="text-lg font-bold">Stock Report</p>
             </div>
-            <DatePicker picker="month" />
+            <Search placeholder="input search text" style={{ width: 200 }} />
           </div>
           <div className="w-full h-96 flex flex-col gap-6">
-            <TinyBarChart barSize={40} color="#3335cd" />
+            <Table />
           </div>
         </div>
       </div>

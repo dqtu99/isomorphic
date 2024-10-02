@@ -4,7 +4,7 @@ import increase from "@/assets/img/icon-increase.svg";
 import decreaseIcon from "@/assets/img/descrease-icon.svg";
 
 type DataMonthly = {
-  name: string;
+  name?: string;
   value: number;
 };
 
@@ -18,15 +18,6 @@ interface MonthlyDataStatsProps {
   icon: string;
 }
 
-const data = [
-  { value: 100 },
-  { value: 300 },
-  { value: 200 },
-  { value: 278 },
-  { value: 100 },
-  { value: 300 },
-];
-
 export default function MonthlyAnalytics({
   title,
   total,
@@ -34,6 +25,7 @@ export default function MonthlyAnalytics({
   status,
   color,
   icon,
+  data,
 }: MonthlyDataStatsProps) {
   return (
     <div className="flex w-full flex-col gap-6 items-start p-5 border-solid border border-slate-200 rounded-md">

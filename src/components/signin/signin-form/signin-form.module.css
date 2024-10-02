@@ -1,0 +1,31 @@
+.login-container {
+  font-size: 14px;
+}
+.signin-with-another-app-btn {
+  border: 1px rgb(227 227 227) solid;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 44px;
+}
+.signin-with-another-app-btn:hover {
+  cursor: pointer;
+  border-color: rgb(40, 41, 43);
+}
+
+.line-or {
+  margin-top: 20px;
+  width: 384px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.line-or span {
+  border-bottom: 0.5px solid rgb(219, 212, 212);
+  display: block;
+  height: 1px;
+  flex: 1;
+}

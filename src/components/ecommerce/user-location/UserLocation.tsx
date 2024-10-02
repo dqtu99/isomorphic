@@ -26,7 +26,10 @@ function UserLocation() {
                   <div
                     className={`rounded-full w-2 h-2 ${country.style}`}
                   ></div>
-                  {country.name}
+                  {country.name}{" "}
+                  <span className="text-black  font-semibold">
+                    {country.value} %
+                  </span>
                 </div>
               );
             })}

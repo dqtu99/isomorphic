@@ -11,27 +11,33 @@ import Profit from "@/components/ecommerce/profit/Profit";
 import PromotionSales from "@/components/ecommerce/promotion-sales/PromotionSales";
 import QueryProvider from "@/components/query-provider/QueryProvider";
 import RecentOrder from "@/components/ecommerce/recent-order/RecentOrder";
+import Menu from "@/components/menu/Menu";
 
 export default function Ecommerce() {
   return (
     <QueryProvider>
-      <div className="flex flex-col">
-        <Header />
-        <div className="ecommerce-container px-4 py-2 flex flex-col gap-6">
-          <HeroSection />
-          <ReportMonthly />
-          <div className="flex flex-col gap-6 lg:flex-row  ">
-            <Profit />
-            <PromotionSales />
+      <div className="flex">
+        <div className="w-1/5 sticky top-0 hidden xl:block">
+          <Menu />
+        </div>
+        <div className="w-4/5 flex flex-col">
+          <Header />
+          <div className="ecommerce-container px-4 py-2 flex flex-col gap-6">
+            <HeroSection />
+            <ReportMonthly />
+            <div className="flex flex-col gap-6 lg:flex-row  ">
+              <Profit />
+              <PromotionSales />
+            </div>
+            <SaleReport />
+            <RecentOrder />
+            <CustomerRate />
+            <div className="flex flex-col gap-6 lg:flex-row">
+              <TopProduct />
+              <UserLocation />
+            </div>
+            <StockReport />
           </div>
-          <SaleReport />
-          <RecentOrder />
-          <CustomerRate />
-          <div className="flex flex-col gap-6 lg:flex-row">
-            <TopProduct />
-            <UserLocation />
-          </div>
-          <StockReport />
         </div>
       </div>
     </QueryProvider>

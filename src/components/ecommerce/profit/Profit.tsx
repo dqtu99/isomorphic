@@ -13,7 +13,7 @@ const data = [
 
 function Profit() {
   return (
-    <div className="h-3/4 flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md lg:w-full">
+    <div className="h-full flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md lg:w-full">
       <div className="w-full flex justify-between items-center">
         <div>
           <p className="text-sm text-gray-400">Total profit</p>

@@ -40,20 +40,6 @@ function SaleReport() {
       </div>
       <div className="w-full h-96 flex flex-col gap-6">
         <ResponsiveContainer width="100%" height="100%">
-          {/* <BarChart data={data}>
-            <XAxis
-              dataKey="month"
-              scale="point"
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis />
-            <Bar
-              dataKey="value"
-              fill="#3335cd"
-              radius={[10, 10, 10, 10]}
-              animationBegin={1000}
-            />
-          </BarChart> */}
           <ComposedChart width={730} height={250} data={data}>
             <XAxis dataKey="name" />
             <YAxis />

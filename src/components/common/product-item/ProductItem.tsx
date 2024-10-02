@@ -1,25 +1,26 @@
-import Image from "next/image";
-import watch from "@/assets/img/watch.webp";
 import starYellow from "@/assets/img/star-icon-yellow.svg";
 import starNormal from "@/assets/img/star-icon-normal.svg";
-
+import { Image } from "antd";
 interface ProductItemProps {
-  star: number;
+  star?: number;
+  name?: string;
+  price?: string | number;
+  img?: string;
 }
 
-function ProductItem({ star }: ProductItemProps) {
+function ProductItem({ star, name, price, img }: ProductItemProps) {
   return (
     <div className="product-item h-12 flex justify-between gap-4 text-sm">
       <Image
-        src={watch}
+        src={img}
         width={48}
         height={48}
         alt="fail"
         className="rounded-xl"
       />
       <div className="flex-1 flex flex-col justify-between ">
-        <p>Classic casio watch</p>
-        <p className="text-gray-500">$ 1,290.00</p>
+        <p>{name}</p>
+        <p className="text-gray-500">$ {price}</p>
       </div>
       <div className="rate-ting flex flex-col justify-between ">
         <div className="star flex gap-2">

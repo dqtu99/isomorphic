@@ -17,9 +17,10 @@ function TimeOption({ setGroupTime }: TimeOptionProps) {
   const defaultTime = timeOptions[0].value;
   const [timeActive, setTimeActive] = useState(defaultTime);
 
-  useEffect(() => {
+  const handleClickTimeOption = (value: string) => {
     setGroupTime(timeActive);
-  }, [timeActive]);
+    setTimeActive(value);
+  };
 
   return (
     <div className="w-full h-12 px-4 flex justify-between  items-center border border-solid rounded-md border-slate-200">
@@ -30,7 +31,7 @@ function TimeOption({ setGroupTime }: TimeOptionProps) {
             "w-12 px-2 py-1 text-sm hover:cursor-pointer flex justify-center  rounded-md",
             timeActive === value && " bg-gray-100"
           )}
-          onClick={() => setTimeActive(value)}
+          onClick={() => handleClickTimeOption(value)}
         >
           {label}
         </div>

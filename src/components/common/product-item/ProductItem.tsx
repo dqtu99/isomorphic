@@ -7,7 +7,7 @@ interface ProductItemProps {
   name?: string;
   price?: string | number;
   img?: string;
-  reviewTotal: number;
+  reviewTotal?: number;
 }
 
 function ProductItem({

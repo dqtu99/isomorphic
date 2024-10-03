@@ -1,4 +1,4 @@
-import { convertKeysToCamelCase } from "@/ultils/stringUltil";
+// import { convertKeysToCamelCase } from "@/ultils/stringUltil";
 import axios from "axios";
 
 // const BASE_URL = "https://api.example.com";
@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    alert("Something fail");
+    // alert("Something fail");
     return Promise.reject(error);
   }
 );

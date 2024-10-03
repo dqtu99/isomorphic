@@ -5,6 +5,8 @@ import {
   FolderViewOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
+import { useGetRecentOrder } from "@/query/e-commerce";
+import { useState } from "react";
 
 type Customer = {
   avatar: string;
@@ -33,7 +35,7 @@ const columns: TableProps<DataType>["columns"] = [
     title: "Customer",
     dataIndex: "customer",
     render: (_, { customer }) => (
-      <div className="flex gap-3 justify-center items-center">
+      <div className="flex gap-3 justify-start items-center">
         <div className="hover:cursor-pointer img-round ">
           <Image src={customer?.avatar} alt="fail" width={30} />
         </div>
@@ -48,6 +50,7 @@ const columns: TableProps<DataType>["columns"] = [
     title: "Price",
     dataIndex: "price",
     key: "price",
+    sorter: (a, b) => a.price - b.price,
     render: (text) => <a>${text}</a>,
   },
   {
@@ -103,64 +106,37 @@ const columns: TableProps<DataType>["columns"] = [
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: "1",
-    item: 1,
-    price: 32,
-    create: "July 21,2023",
-    modified: "July 21,2023",
-    status: "COMPLETED",
-    customer: {
-      avatar:
-        "https://isomorphic-furyroad.s3.amazonaws.com/public/avatars/avatar-04.webp",
-      name: "Luther Windler",
-      email: "carmella.morar52@gmail.com",
-    },
-  },
-  {
-    key: "2",
-    item: 2,
-    price: 32,
-    create: "July 21,2023",
-    modified: "July 21,2023",
-    status: "CANCEL",
-    customer: {
-      avatar:
-        "https://isomorphic-furyroad.s3.amazonaws.com/public/avatars/avatar-04.webp",
-      name: "Luther Windler",
-      email: "carmella.morar52@gmail.com",
-    },
-  },
-  {
-    key: "3",
-    item: 3,
-    price: 32,
-    create: "July 21,2023",
-    modified: "July 21,2023",
-    status: "PENDING",
-    customer: {
-      avatar:
-        "https://isomorphic-furyroad.s3.amazonaws.com/public/avatars/avatar-04.webp",
-      name: "Luther Windler",
-      email: "carmella.morar52@gmail.com",
-    },
-  },
-];
 function RecentOrder() {
+  const [param, setParams] = useState({
+    limit: 9999,
+    page: 1,
+    search: "",
+  });
+
+  const { recentOrderList } = useGetRecentOrder(param);
+  const handleSearchClick = (value: string) => {
+    setParams((prev) => ({ ...prev, search: value }));
+  };
+
   return (
     <div className="flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
       <div className="w-full flex justify-between items-center">
         <div>
           <p className="text-lg font-bold">Recent Order</p>
         </div>
-        <Search placeholder="Search order ..." style={{ width: 200 }} />
+        <Search
+          onSearch={handleSearchClick}
+          placeholder="Search order ..."
+          style={{ width: 200 }}
+        />
       </div>
-      <div className="w-full h-96 flex flex-col gap-6">
+      <div className="w-full flex flex-col gap-6">
         <TableLib<DataType>
           columns={columns}
-          dataSource={data}
+          dataSource={recentOrderList}
           scroll={{ x: "100%" }}
+          size="middle"
+          pagination={{ pageSize: 7 }}
         />
       </div>
     </div>

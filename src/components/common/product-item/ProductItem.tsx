@@ -1,14 +1,22 @@
 import starYellow from "@/assets/img/star-icon-yellow.svg";
 import starNormal from "@/assets/img/star-icon-normal.svg";
 import { Image } from "antd";
+import ImgNext from "next/image";
 interface ProductItemProps {
   star?: number;
   name?: string;
   price?: string | number;
   img?: string;
+  reviewTotal: number;
 }
 
-function ProductItem({ star, name, price, img }: ProductItemProps) {
+function ProductItem({
+  star,
+  name,
+  price,
+  img,
+  reviewTotal,
+}: ProductItemProps) {
   return (
     <div className="product-item h-12 flex justify-between gap-4 text-sm">
       <Image
@@ -27,15 +35,15 @@ function ProductItem({ star, name, price, img }: ProductItemProps) {
           {Array(star)
             .fill(0)
             .map((_, idx) => (
-              <Image key={idx} src={starYellow} alt="" />
+              <ImgNext key={idx} src={starYellow} alt="" />
             ))}
-          {Array(5 - star)
+          {Array(5 - (star ?? 0))
             .fill(0)
             .map((_, idx) => (
-              <Image key={idx} src={starNormal} alt="" />
+              <ImgNext key={idx} src={starNormal} alt="" />
             ))}
         </div>
-        <div className="total-review text-gray-500">12.5 review</div>
+        <div className="total-review text-gray-500">{reviewTotal} review</div>
       </div>
     </div>
   );

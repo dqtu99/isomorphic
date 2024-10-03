@@ -62,9 +62,9 @@ const columns: TableProps<DataType>["columns"] = [
     title: "Rating",
     dataIndex: "rate",
     render: (_, { rate }) => (
-      <div className="flex gap-3 justify-center items-center">
+      <div className="flex gap-3 justify-start items-center">
         <p className="text-gray-400">{rate?.avgRate} </p>
-        <div className="star flex gap-2">
+        <div className="star flex gap-2 flex-wrap">
           {Array(rate?.star)
             .fill(0)
             .map((_, idx) => (

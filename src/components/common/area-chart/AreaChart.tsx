@@ -9,9 +9,10 @@ import {
 interface AreaChartLibProps {
   isLineNear?: boolean;
   data: unknown[];
+  dataKey: string;
 }
 
-const AreaChart = ({ data, isLineNear = true }: AreaChartLibProps) => {
+const AreaChart = ({ data, isLineNear = true, dataKey }: AreaChartLibProps) => {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <AreaChartLib
@@ -26,10 +27,10 @@ const AreaChart = ({ data, isLineNear = true }: AreaChartLibProps) => {
             </linearGradient>
           </defs>
         )}
-        <Tooltip />
+        <Tooltip label="Total profit" />
         <Area
           type="monotone"
-          dataKey="Total sale"
+          dataKey={dataKey}
           stroke="green"
           fillOpacity={1}
           fill="url(#colorUv)"

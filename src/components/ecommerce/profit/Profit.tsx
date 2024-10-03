@@ -6,6 +6,10 @@ import { useState } from "react";
 
 const GROUP_TIME_DEFAULT = "5D";
 
+type Profit = {
+  total_sale: number;
+};
+
 function Profit() {
   const { profits } = useGetTotalProfit();
   const [groupTime, setGroupTime] = useState(GROUP_TIME_DEFAULT);
@@ -24,7 +28,7 @@ function Profit() {
         <div className="w-full flex flex-col gap-6">
           <TimeOption setGroupTime={setGroupTime} />
           <AreaChart
-            data={profitGroup.data.map((item) => ({
+            data={profitGroup.data.map((item: Profit) => ({
               ...item,
               ["Total sale"]: item.total_sale,
             }))}

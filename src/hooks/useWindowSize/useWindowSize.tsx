@@ -6,7 +6,10 @@ type SizeWindow = {
 };
 
 const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState<SizeWindow>();
+  const [windowSize, setWindowSize] = useState<SizeWindow>({
+    width: 100,
+    height: 100,
+  });
 
   useEffect(() => {
     const handleResize = () => {

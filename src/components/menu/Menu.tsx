@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { ShoppingCartOutlined, FolderOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu as MenuLib } from "antd";
@@ -15,6 +15,7 @@ import logisticIcon from "@/assets/img/logistic.svg";
 import ecommerceIcon from "@/assets/img/e-commerce-icon.svg";
 import analyticIcon from "@/assets/img/analytics.svg";
 import supportIcon from "@/assets/img/support.svg";
+import useWindowSize from "@/hooks/useWindowSize/useWindowSize";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -98,26 +99,52 @@ const items: MenuItem[] = [
   },
 ];
 
-const Menu = () => {
+interface menuProps {
+  isShow: boolean;
+  setIsShow: (state: boolean) => void;
+}
+
+const Menu = ({ isShow, setIsShow }: menuProps) => {
+  const { width } = useWindowSize();
+  const isSmallScreen = width < 1280;
+
+  useEffect(() => {
+    if (isSmallScreen && isShow) {
+      document.documentElement.style.overflow = "hidden";
+    }
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [isShow, isSmallScreen]);
+
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
   };
 
   return (
-    <div className="sticky top-0">
-      <div className="logo-menu flex gap-3 items-center justify-start p-5">
-        <Image src={iconLogo} alt="fail" width="60" />
-        <p className="text-lg font-bold">Isomorphic</p>
-      </div>
-      <MenuLib
-        onClick={onClick}
-        style={{ height: "100vh", overflow: "scroll" }}
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
-        mode="inline"
-        items={items}
-      />
-    </div>
+    (!isSmallScreen || isShow) && (
+      <>
+        <div className="w-2/3 h-screen border-x border-solid border-slate-200 sm:w-1/3 fixed top-0 z-50 bg-white xl:block xl:sticky xl:top-0 xl:w-1/4 ">
+          <div className="logo-menu flex gap-3 items-center justify-start p-5">
+            <Image src={iconLogo} alt="fail" width="60" />
+            <p className="text-lg font-bold">Isomorphic</p>
+          </div>
+          <div className="menu-container">
+            <MenuLib
+              onClick={onClick}
+              style={{ height: "100vh", overflow: "scroll" }}
+              defaultSelectedKeys={["1"]}
+              mode="inline"
+              items={items}
+            />
+          </div>
+        </div>
+        <div
+          className="fixed h-screen w-screen z-40  bg-black opacity-50 xl:hidden"
+          onClick={() => setIsShow(false)}
+        />
+      </>
+    )
   );
 };
 

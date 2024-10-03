@@ -12,16 +12,17 @@ import PromotionSales from "@/components/ecommerce/promotion-sales/PromotionSale
 import QueryProvider from "@/components/query-provider/QueryProvider";
 import RecentOrder from "@/components/ecommerce/recent-order/RecentOrder";
 import Menu from "@/components/menu/Menu";
+import { useState } from "react";
 
 export default function Ecommerce() {
+  const [isShopMenuPopup, setShowMenuPopup] = useState<boolean>(false);
+
   return (
     <QueryProvider>
       <div className="flex">
-        <div className="w-1/5 sticky top-0 hidden xl:block">
-          <Menu />
-        </div>
+        <Menu isShow={isShopMenuPopup} setIsShow={setShowMenuPopup} />
         <div className="w-full flex flex-col">
-          <Header />
+          <Header setShowMenuPopup={setShowMenuPopup} />
           <div className="ecommerce-container px-4 py-2 flex flex-col gap-6">
             <HeroSection />
             <ReportMonthly />

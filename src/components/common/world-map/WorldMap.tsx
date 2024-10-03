@@ -18,7 +18,6 @@ export default function WorldMap({ data }: WorldMapProps) {
       setSizeWorldMap(width - 110);
     }
   }, [width]);
-  console.log(sizeWorldMap);
 
   return (
     <WorldMapLib

@@ -6,13 +6,22 @@ import avatar from "@/assets/img/avatar.webp";
 import settingIcon from "@/assets/img/icon-setting.svg";
 import noticeIcon from "@/assets/img/icon-notice.svg";
 import messageIcon from "@/assets/img/icon-message.svg";
+import Search from "antd/es/input/Search";
 
-export default function Header() {
+interface HeaderProps {
+  setShowMenuPopup: (state: boolean) => void;
+}
+
+export default function Header({ setShowMenuPopup }: HeaderProps) {
   return (
     <div className="header sticky top-0 flex justify-between items-center p-4 w-full h-15 border-b border-gray-300 bg-white z-10">
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center gap-4 xl:hidden">
         <div className="hover:cursor-pointer">
-          <Image src={iconMenu} alt="fail" />
+          <Image
+            src={iconMenu}
+            alt="fail"
+            onClick={() => setShowMenuPopup(true)}
+          />
         </div>
         <div className="hover:cursor-pointer">
           <Image src={iconLogo} alt="fail" width="35" />
@@ -20,6 +29,9 @@ export default function Header() {
         <div className="hover:cursor-pointer ">
           <Image src={iconSearch} alt="fail" width="20" />
         </div>
+      </div>
+      <div className="hidden xl:block">
+        <Search placeholder="Search your page" style={{ width: 200 }} />
       </div>
       <div className="flex justify-center items-center gap-4">
         <div className="hover:cursor-pointer relative">

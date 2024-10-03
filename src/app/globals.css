@@ -66,3 +66,7 @@ body {
 .minus-top-35 {
   top: -35px;
 }
+
+.menu-container ul {
+  overflow: auto !important;
+}

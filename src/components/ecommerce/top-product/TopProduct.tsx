@@ -17,6 +17,10 @@ function TopProduct() {
   });
   const { topProductList } = useGetTopProduct(params);
 
+  const handleViewAllClick = () => {
+    setParams({ limit: 9999, page: 1 });
+  };
+
   return (
     <div className="w-full flex flex-col gap-5 items-start p-6 border-solid border border-slate-200 rounded-md">
       <div className="w-full flex justify-between items-center">
@@ -29,7 +33,7 @@ function TopProduct() {
         </div>
         <span
           className="text-sm cursor-pointer underline text-gray-400"
-          onClick={() => setParams({ limit: 9999, page: 1 })}
+          onClick={handleViewAllClick}
         >
           View all
         </span>

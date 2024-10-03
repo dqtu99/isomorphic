@@ -18,12 +18,13 @@ export default function WorldMap({ data }: WorldMapProps) {
       setSizeWorldMap(width - 110);
     }
   }, [width]);
+  console.log(sizeWorldMap);
 
   return (
     <WorldMapLib
       color="#028ca6"
       valueSuffix="%"
-      size={sizeWorldMap}
+      size={width >= 1280 ? "lg" : width >= 1536 ? "xl" : sizeWorldMap}
       data={data}
     />
   );

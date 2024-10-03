@@ -18,8 +18,8 @@ export function useAuthentication() {
 
   useEffect(() => {
     setAuthState({
-      user: { id: 1, name: "Tu", email: "doquangtu199@gmail.com" },
-      //   user: null,
+      // user: { id: 1, name: "Tu", email: "doquangtu199@gmail.com" },
+      user: null,
       loading: false,
       error: null,
     });

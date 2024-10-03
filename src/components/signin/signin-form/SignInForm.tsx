@@ -8,8 +8,13 @@ import Link from "next/link";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import classes from "./signin-form.module.css";
+import { useRouter } from "next/navigation";
 
 function SigninForm() {
+  const router = useRouter();
+  const handleNavigateEcommercePage = () => {
+    router.replace("/ecommerce");
+  };
   return (
     <div className="signin-form w-full lg:w-2/5">
       <BackHomeButton />
@@ -79,7 +84,13 @@ function SigninForm() {
           </Link>
         </div>
         <div className="w-96 mt-4">
-          <Button size="large" color="default" variant="solid" block>
+          <Button
+            size="large"
+            color="default"
+            variant="solid"
+            block
+            onClick={handleNavigateEcommercePage}
+          >
             Sign in <ArrowRightOutlined />
           </Button>
         </div>

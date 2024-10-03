@@ -9,12 +9,38 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import classes from "./signin-form.module.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+type User = {
+  name: string;
+  password: string;
+};
+
+const INIT_USER = { name: "Admin", password: "Admin" };
 
 function SigninForm() {
+  const [user, setUser] = useState<User>(INIT_USER);
+
   const router = useRouter();
-  const handleNavigateEcommercePage = () => {
-    router.replace("/ecommerce");
+
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUser((prev) => ({ ...prev, name: value }));
   };
+
+  const handlePassWordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUser((prev) => ({ ...prev, password: value }));
+  };
+
+  const handleNavigateEcommercePage = () => {
+    if (user.name === "Admin" && user.password === "Admin") {
+      router.replace("/ecommerce");
+    } else {
+      alert("Login fail");
+    }
+  };
+
   return (
     <div className="signin-form w-full lg:w-2/5">
       <BackHomeButton />
@@ -70,11 +96,21 @@ function SigninForm() {
         </div>
         <div className="w-96 mt-4">
           <p className="py-1 text-gray-700">Email</p>
-          <Input size="large" placeholder="User name" />
+          <Input
+            value={user.name}
+            onChange={handleUserNameChange}
+            size="large"
+            placeholder="User name"
+          />
         </div>
         <div className="w-96 mt-4">
           <p className="py-1 text-gray-700">Password</p>
-          <Input.Password size="large" placeholder="Input password" />
+          <Input.Password
+            value={user.password}
+            onChange={handlePassWordChange}
+            size="large"
+            placeholder="Input password"
+          />
         </div>
 
         <div className="w-96 flex justify-between items-center py-4">

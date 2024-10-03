@@ -12,6 +12,10 @@ const useWindowSize = () => {
   });
 
   useEffect(() => {
+    setWindowSize({
+      width: window?.innerWidth,
+      height: window?.innerHeight,
+    });
     const handleResize = () => {
       setWindowSize({
         width: window?.innerWidth,

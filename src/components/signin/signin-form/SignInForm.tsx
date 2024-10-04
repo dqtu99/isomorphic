@@ -16,11 +16,10 @@ type User = {
   password: string;
 };
 
-const INIT_USER = { name: "Admin", password: "Admin" };
+const INIT_USER = { name: "admin@admin.com", password: "Admin" };
 
 function SigninForm() {
   const [user, setUser] = useState<User>(INIT_USER);
-
   const router = useRouter();
 
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +33,7 @@ function SigninForm() {
   };
 
   const handleNavigateEcommercePage = () => {
-    if (user.name === "Admin" && user.password === "Admin") {
+    if (user.name === "admin@admin.com" && user.password === "Admin") {
       router.replace("/ecommerce");
     } else {
       alert("Login fail");

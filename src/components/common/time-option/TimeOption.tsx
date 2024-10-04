@@ -18,7 +18,7 @@ function TimeOption({ setGroupTime }: TimeOptionProps) {
   const [timeActive, setTimeActive] = useState(defaultTime);
 
   const handleClickTimeOption = (value: string) => {
-    setGroupTime(timeActive);
+    setGroupTime(value);
     setTimeActive(value);
   };
 
@@ -28,7 +28,7 @@ function TimeOption({ setGroupTime }: TimeOptionProps) {
         <div
           key={value}
           className={clsx(
-            "w-12 px-2 py-1 text-sm hover:cursor-pointer flex justify-center  rounded-md",
+            "w-12 px-2 py-1 text-md hover:cursor-pointer flex justify-center rounded-md",
             timeActive === value && " bg-gray-100"
           )}
           onClick={() => handleClickTimeOption(value)}

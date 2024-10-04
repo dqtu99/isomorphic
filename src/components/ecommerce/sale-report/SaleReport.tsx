@@ -6,21 +6,22 @@ import {
   ResponsiveContainer,
   ComposedChart,
   Line,
+  Tooltip,
 } from "recharts";
 
 const data = [
-  { value: 100, uv: 200, month: "Jan" },
-  { value: 300, uv: 200, month: "Fer" },
-  { value: 200, uv: 300, month: "Mar" },
-  { value: 278, uv: 100, month: "Apr" },
-  { value: 100, uv: 50, month: "May" },
-  { value: 700, uv: 250, month: "Jun" },
-  { value: 100, uv: 200, month: "Jul" },
-  { value: 300, uv: 300, month: "Aug" },
-  { value: 200, uv: 100, month: "Sep" },
-  { value: 278, uv: 100, month: "Oct" },
-  { value: 100, uv: 300, month: "Nov" },
-  { value: 600, uv: 100, month: "Dec" },
+  { Revenue: 100, Expense: 200, month: "Jan", line: 100 },
+  { Revenue: 300, Expense: 200, month: "Fer", line: 300 },
+  { Revenue: 200, Expense: 300, month: "Mar", line: 200 },
+  { Revenue: 278, Expense: 100, month: "Apr", line: 278 },
+  { Revenue: 100, Expense: 50, month: "May", line: 100 },
+  { Revenue: 700, Expense: 250, month: "Jun", line: 700 },
+  { Revenue: 100, Expense: 200, month: "Jul", line: 100 },
+  { Revenue: 300, Expense: 300, month: "Aug", line: 300 },
+  { Revenue: 200, Expense: 100, month: "Sep", line: 200 },
+  { Revenue: 278, Expense: 100, month: "Oct", line: 278 },
+  { Revenue: 100, Expense: 300, month: "Nov", line: 100 },
+  { Revenue: 600, Expense: 100, month: "Dec", line: 600 },
 ];
 
 function SaleReport() {
@@ -41,26 +42,46 @@ function SaleReport() {
       <div className="w-full h-96 flex flex-col gap-6">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart width={730} height={250} data={data}>
-            <XAxis dataKey="name" />
+            <XAxis dataKey="month" />
             <YAxis />
             <Bar
-              dataKey="value"
+              dataKey="Revenue"
               stackId="a"
               barSize={20}
               fill="#282eca"
               radius={[0, 0, 5, 5]}
             />
             <Bar
-              dataKey="uv"
+              dataKey="Expense"
               stackId="a"
               fill="#bec8eb"
               radius={[5, 5, 0, 0]}
             />
             <Line
               type="monotone"
-              dataKey="value"
+              dataKey="line"
               stroke="#8200e9"
               strokeWidth={1.5}
+            />
+            <Tooltip
+              content={({ active, payload, label }) => {
+                if (active && payload && payload.length) {
+                  return (
+                    <div className="custom-tooltip p-5 block opacity-100 bg-white border-solid border border-slate-200 rounded-md">
+                      <p className="label bg-slate-50">{`${label}`}</p>
+                      <div className="flex gap-2 items-center">
+                        <div className="w-2 h-2 rounded-full bg-indigo-500" />
+                        <p className="text-sm text-gray-500">{`Revenue : ${payload[0].value}`}</p>
+                      </div>
+                      <div className="flex gap-2 items-center">
+                        <div className="w-2 h-2 rounded-full bg-indigo-200" />
+                        <p className="text-sm text-gray-500">{`Expense : ${payload[1].value}`}</p>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              }}
             />
           </ComposedChart>
         </ResponsiveContainer>
